@@ -5,9 +5,9 @@ class Ork {
 	//constants
 
 	const MAX_ATTRIBUTE = 20;
-	const MAX_STRENGTH = MAX_ATTRIBUTE;
-	const MAX_ENDURANCE = MAX_ATTRIBUTE;
-	const MAX_SPEED = MAX_ATTRIBUTE;
+	const MAX_STRENGTH = Ork::MAX_ATTRIBUTE;
+	const MAX_ENDURANCE = Ork::MAX_ATTRIBUTE;
+	const MAX_SPEED = Ork::MAX_ATTRIBUTE;
 
 	//static stuff
 
@@ -29,7 +29,7 @@ class Ork {
 	protected $damage;
 
 	protected $health;
-	protected $targetEnemy = false;
+	protected $targetEnemy = FALSE;
 
 
 	// init and magic functions
@@ -52,14 +52,17 @@ class Ork {
 			$this->endurance = $endurance;
 			$this->speed = $speed;
 		} else {
-			$strength = rand(1, MAX_STRENGTH);
-			$endurance = rand(1, MAX_ENDURANCE);
-			$speed = rand(1, MAX_SPEED);
+			$this->strength = rand(1, Ork::MAX_STRENGTH);
+			$this->endurance = rand(1, Ork::MAX_ENDURANCE);
+			$this->speed = rand(1, Ork::MAX_SPEED);
 		}
+
+		$this->init();
 	}
 
 	protected function init() {
-		$this->health = $this->endurance * 10;
+		$this->maxHealth = $this->endurance * 10;
+		$this->health = $this->maxHealth;
 		$this->damage = $this->strength;
 	}
 
