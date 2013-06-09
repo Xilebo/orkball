@@ -22,6 +22,22 @@ class Ork {
 		$this->endurance = $endurance;
 		$this->speed = $speed;
 	}
-
+	
+	//Getters and Setters
+	
+	public function getStrength() {
+		return $this->strength;
+	}
+	
+	public function getEndurance() {
+		return $this->endurance;
+	}
+	
+	public function getSpeed() {
+		return $this->speed;
+	}
+	
+	//logic
+	
 }
 ?>
