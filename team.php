@@ -18,7 +18,7 @@ class Team {
 		if ($ork) {
 			$this->orks[] = $ork;
 		} else {
-			$this->orks[] = new Ork(Ork::generateName(), $this->name);
+			$this->orks[] = new Ork($this->name);
 		}
 	}
 	

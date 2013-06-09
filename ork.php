@@ -27,10 +27,14 @@ class Ork {
 
 	// initialize
 
-	function __construct($name, $teamName, $strength = FALSE, $endurance = FALSE, $speed = FALSE) {
-		$this->name = $name;
+	function __construct($teamName, $name = FALSE, $strength = FALSE, $endurance = FALSE, $speed = FALSE) {
 		$this->teamName = $teamName;
-		if ($strength and $endurance and $speed) {
+		if ($name) {
+			$this->name = $name;
+		} else {
+			$this->name = Ork::generateName();
+		}
+		if ($strength && $endurance && $speed) {
 			$this->strength = $strength;
 			$this->endurance = $endurance;
 			$this->speed = $speed;
@@ -70,6 +74,10 @@ class Ork {
 
 	public function isDead() {
 		return ($this->health <= 0);
+	}
+	
+	public function hasEnemy() {
+		$result = TRUE && $this->targetEnemy;
 	}
 
 	//fighting
