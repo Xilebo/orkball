@@ -104,6 +104,14 @@ class Ork {
 		return ($this->health > 0);
 	}
 
+	public function getMeat() {
+		return ($this->strength + $this->endurance);
+	}
+
+	public function getHunger() {
+		return $this->isAlive() ? $this->strength : 0;
+	}
+
 	public function hasEnemy() {
 		$result = TRUE && $this->targetEnemy;
 	}
