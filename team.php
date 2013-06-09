@@ -18,6 +18,21 @@ class Team {
 		return $this->name;
 	}
 
+	//getters and setters
+
+	public function getOrk($position) {
+		$result = FALSE;
+		if ($position < $this->size()) {
+			$result = $this->orks[$position];
+		}
+	}
+
+	public function size() {
+		return count($this->orks);
+	}
+
+	// team management
+
 	public function addOrk($ork = FALSE) {
 		$ork = $ork ? $ork : new Ork();
 		$ork->setTeam($this->name);
