@@ -72,8 +72,8 @@ class Ork {
 
 	protected function calculateSecondaryAttributes() {
 		$this->maxHealth = $this->endurance * 10;
-		$this->health = $this->maxHealth;
 		$this->damage = $this->strength;
+		$this->reset();
 	}
 
 	public function __toString() {
@@ -82,58 +82,98 @@ class Ork {
 
 	//Getters and Setters
 
+	/**
+	 * @return int
+	 */
 	public function getStrength() {
 		return $this->strength;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getEndurance() {
 		return $this->endurance;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getSpeed() {
 		return $this->speed;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getName() {
 		return $this->name;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getTeam() {
 		return $this->teamName;
 	}
 
 	public function setTeam($teamName) {
-		$this->teamName = ((String) $teamName);
+		$this->teamName = ((string) $teamName);
 	}
 
+	/**
+	 * @return boolean
+	 */
 	public function isDead() {
 		return ($this->health <= 0);
 	}
 
+	/**
+	 * @return boolean
+	 */
 	public function isAlive() {
 		return ($this->health > 0);
 	}
 
+	/**
+	 * @return int the amount of meat this ork gives if slaughtered
+	 */
 	public function getMeat() {
 		return ($this->strength + $this->endurance);
 	}
 
+	/**
+	 * @return int the amount of meat this ork eats after each match (0 if dead)
+	 */
 	public function getHunger() {
 		return $this->isAlive() ? $this->strength : 0;
 	}
 
+	/**
+	 * @return boolean
+	 */
 	public function hasEnemy() {
 		$result = TRUE && $this->targetEnemy;
+		return $result;
 	}
 
 	//fighting
 
-	public function engage($enemy) {
+	/**
+	 * Lets the ork engage a given target (if still alive)
+	 * @param Ork the targeted enemy ork
+	 */
+	public function engage($target) {
 		if ($this->isAlive()) {
-			$this->targetEnemy = $enemy;
+			$this->targetEnemy = $target;
 		}
 	}
 
+	/**
+	 * Hit this ork and deal a given amount of damage
+	 * @param int $damage
+	 * @return boolean is the ork killed by the force of the blow?
+	 */
 	public function hit($damage) {
 		$this->health -= $damage;
 		return $this->isDead();
@@ -143,9 +183,17 @@ class Ork {
 		if (($this->targetEnemy) && ($this->isAlive())) {
 			$targetKilled = $this->targetEnemy->hit($this->damage);
 			if ($targetKilled) {
-				$this->targetEnemy = false;
+				$this->targetEnemy = FALSE;
 			}
 		}
+	}
+
+	/**
+	 * Resets the ork to state it should have at the beginning of a match.
+	 */
+	public function reset() {
+		$this->health = $this->maxHealth;
+		$this->targetEnemy = FALSE;
 	}
 
 }
