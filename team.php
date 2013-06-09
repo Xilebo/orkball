@@ -29,6 +29,10 @@ class Team {
 		return $result;
 	}
 
+	public function getName() {
+		return $this->name;
+	}
+
 	public function size() {
 		return count($this->orks);
 	}
