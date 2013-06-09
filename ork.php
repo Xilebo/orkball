@@ -27,7 +27,7 @@ class Ork {
 
 	// initialize
 
-	function __construct($teamName, $name = FALSE, $strength = FALSE, $endurance = FALSE, $speed = FALSE) {
+	function __construct($teamName = '', $name = FALSE, $strength = FALSE, $endurance = FALSE, $speed = FALSE) {
 		$this->teamName = $teamName;
 		if ($name) {
 			$this->name = $name;
