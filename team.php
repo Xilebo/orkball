@@ -25,6 +25,7 @@ class Team {
 		if ($position < $this->size()) {
 			$result = $this->orks[$position];
 		}
+		return $result;
 	}
 
 	public function size() {
