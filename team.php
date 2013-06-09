@@ -19,11 +19,9 @@ class Team {
 	}
 
 	public function addOrk($ork = FALSE) {
-		if ($ork) {
-			$this->orks[] = $ork;
-		} else {
-			$this->orks[] = new Ork($this->name);
-		}
+		$ork = $ork ? $ork : new Ork();
+		$ork->setTeam($this->name);
+		$this->orks[] = $ork;
 	}
 
 }

@@ -34,7 +34,13 @@ class Ork {
 
 	// init and magic functions
 
-	function __construct($teamName = '', $name = FALSE, $strength = FALSE, $endurance = FALSE, $speed = FALSE) {
+	function __construct(
+			$name = FALSE,
+			$teamName = '',
+			$strength = FALSE,
+			$endurance = FALSE,
+			$speed = FALSE)
+	{
 		$this->teamName = $teamName;
 		if ($name) {
 			$this->name = $name;
@@ -84,7 +90,7 @@ class Ork {
 	}
 
 	public function setTeam($teamName) {
-		$this->teamName = $teamName;
+		$this->teamName = ((String) $teamName);
 	}
 
 	public function isDead() {
@@ -108,7 +114,7 @@ class Ork {
 
 	public function attackTarget() {
 		if ($this->targetEnemy) {
-			$targetKilled = $this->targetEnemy.hit($this->damage);
+			$targetKilled = $this->targetEnemy->hit($this->damage);
 			if ($targetKilled) {
 				$this->targetEnemy = false;
 			}
