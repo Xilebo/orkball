@@ -1,12 +1,13 @@
 <?php
+
 class Ork {
 
 	//constants
 
-	public final $maxAttribute = 20;
-	public final $maxStrength = maxAttribute;
-	public final $maxEndurance = maxAttribute;
-	public final $maxSpeed = maxAttribute;
+	const MAX_ATTRIBUTE = 20;
+	const MAX_STRENGTH = MAX_ATTRIBUTE;
+	const MAX_ENDURANCE = MAX_ATTRIBUTE;
+	const MAX_SPEED = MAX_ATTRIBUTE;
 
 	//variables
 
@@ -24,20 +25,18 @@ class Ork {
 
 	// initialize
 
-	function __construct($name, $teamName) {
+	function __construct($name, $teamName, $strength = FALSE, $endurance = FALSE, $speed = FALSE) {
 		$this->name = $name;
 		$this->teamName = $teamName;
-		$strength = rand(1, $maxStrength);
-		$endurance = rand(1, $maxEndurance);
-		$speed = rand(1, $maxSpeed);
-	}
-
-	function __construct($name, $teamName, $strength, $endurance, $speed) {
-		$this->name = $name;
-		$this->teamName = $teamName;
-		$this->strength = $strength;
-		$this->endurance = $endurance;
-		$this->speed = $speed;
+		if ($strength and $endurance and $speed) {
+			$this->strength = $strength;
+			$this->endurance = $endurance;
+			$this->speed = $speed;
+		} else {
+			$strength = rand(1, MAX_STRENGTH);
+			$endurance = rand(1, MAX_ENDURANCE);
+			$speed = rand(1, MAX_SPEED);
+		}
 	}
 
 	protected function init() {
