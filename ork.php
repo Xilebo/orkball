@@ -11,6 +11,8 @@ class Ork {
 
 	//variables
 
+	static protected $nameGenerations = 0;
+	
 	protected $name;
 	protected $teamName;
 	protected $strength;
@@ -44,6 +46,10 @@ class Ork {
 		$this->damage = $this->strength;
 	}
 
+	static function generateName() {
+		return 'Nameless Grunt Nr. '.(++Ork::$nameGenerations);
+	}
+	
 	//Getters and Setters
 
 	public function getStrength() {
