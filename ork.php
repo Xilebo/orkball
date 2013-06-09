@@ -100,6 +100,10 @@ class Ork {
 		return ($this->health <= 0);
 	}
 
+	public function isAlive() {
+		return ($this->health > 0);
+	}
+
 	public function hasEnemy() {
 		$result = TRUE && $this->targetEnemy;
 	}
@@ -107,7 +111,9 @@ class Ork {
 	//fighting
 
 	public function engage($enemy) {
-		$this->targetEnemy = $enemy;
+		if ($this->isAlive()) {
+			$this->targetEnemy = $enemy;
+		}
 	}
 
 	public function hit($damage) {
@@ -116,7 +122,7 @@ class Ork {
 	}
 
 	public function attackTarget() {
-		if ($this->targetEnemy) {
+		if (($this->targetEnemy) && ($this->isAlive())) {
 			$targetKilled = $this->targetEnemy->hit($this->damage);
 			if ($targetKilled) {
 				$this->targetEnemy = false;
