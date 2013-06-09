@@ -10,6 +10,7 @@ class Ork {
 
 	//variables
 
+	protected $name;
 	protected $strength;
 	protected $endurance;
 	protected $speed;
@@ -22,13 +23,15 @@ class Ork {
 
 	// initialize
 
-	function __construct() {
+	function __construct($name) {
+		$this->name = $name;
 		$strength = rand(1, $maxStrength);
 		$endurance = rand(1, $maxEndurance);
 		$speed = rand(1, $maxSpeed);
 	}
 
-	function __construct($strength, $endurance, $speed) {
+	function __construct($name, $strength, $endurance, $speed) {
+		$this->name = $name;
 		$this->strength = $strength;
 		$this->endurance = $endurance;
 		$this->speed = $speed;
@@ -51,6 +54,10 @@ class Ork {
 
 	public function getSpeed() {
 		return $this->speed;
+	}
+
+	public function getName() {
+		return $this->name;
 	}
 
 	public function isDead() {
