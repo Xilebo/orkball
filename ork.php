@@ -52,7 +52,7 @@ class Ork {
 	public function getSpeed() {
 		return $this->speed;
 	}
-	
+
 	public function isDead() {
 		return ($this->health <= 0);
 	}
