@@ -11,6 +11,7 @@ class Ork {
 	//variables
 
 	protected $name;
+	protected $teamName;
 	protected $strength;
 	protected $endurance;
 	protected $speed;
@@ -23,15 +24,17 @@ class Ork {
 
 	// initialize
 
-	function __construct($name) {
+	function __construct($name, $teamName) {
 		$this->name = $name;
+		$this->teamName = $teamName;
 		$strength = rand(1, $maxStrength);
 		$endurance = rand(1, $maxEndurance);
 		$speed = rand(1, $maxSpeed);
 	}
 
-	function __construct($name, $strength, $endurance, $speed) {
+	function __construct($name, $teamName, $strength, $endurance, $speed) {
 		$this->name = $name;
+		$this->teamName = $teamName;
 		$this->strength = $strength;
 		$this->endurance = $endurance;
 		$this->speed = $speed;
