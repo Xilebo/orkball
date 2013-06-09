@@ -52,6 +52,10 @@ class Ork {
 	public function getSpeed() {
 		return $this->speed;
 	}
+	
+	public function isDead() {
+		return ($this->health <= 0);
+	}
 
 	//fighting
 
@@ -61,16 +65,15 @@ class Ork {
 
 	public function hit($damage) {
 		$this->health -= $damage;
-
-		//TODO check if dead
-
+		return $this->isDead();
 	}
 
 	public function attackTarget() {
 		if ($this->targetEnemy) {
-			$this->targetEnemy.hit($this->damage);
-
-			//TODO check if enemy dead
+			$targetKilled = $this->targetEnemy.hit($this->damage);
+			if ($targetKilled) {
+				$this->targetEnemy = false;
+			}
 		}
 	}
 
