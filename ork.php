@@ -47,20 +47,30 @@ class Ork {
 		} else {
 			$this->name = Ork::generateName();
 		}
-		if ($strength && $endurance && $speed) {
+		if (	   ($strength > 0)
+				&& ($strength < Ork::MAX_STRENGTH)
+				&& ($endurance > 0)
+				&& ($endurance < Ork::MAX_ENDURANCE)
+				&& ($speed > 0)
+				&& ($speed < Ork::MAX_SPEED)) {
 			$this->strength = $strength;
 			$this->endurance = $endurance;
 			$this->speed = $speed;
 		} else {
-			$this->strength = rand(1, Ork::MAX_STRENGTH);
-			$this->endurance = rand(1, Ork::MAX_ENDURANCE);
-			$this->speed = rand(1, Ork::MAX_SPEED);
+			$this->randomizeAttributes();
 		}
 
-		$this->init();
+		$this->calculateSecondaryAttributes();
+
 	}
 
-	protected function init() {
+	protected function randomizeAttributes() {
+		$this->strength = rand(1, Ork::MAX_STRENGTH);
+		$this->endurance = rand(1, Ork::MAX_ENDURANCE);
+		$this->speed = rand(1, Ork::MAX_SPEED);
+	}
+
+	protected function calculateSecondaryAttributes() {
 		$this->maxHealth = $this->endurance * 10;
 		$this->health = $this->maxHealth;
 		$this->damage = $this->strength;
