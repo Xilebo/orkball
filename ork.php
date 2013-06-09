@@ -9,10 +9,16 @@ class Ork {
 	const MAX_ENDURANCE = MAX_ATTRIBUTE;
 	const MAX_SPEED = MAX_ATTRIBUTE;
 
-	//variables
+	//static stuff
 
 	static protected $nameGenerations = 0;
-	
+
+	static function generateName() {
+		return 'Nameless Grunt Nr. '.(++Ork::$nameGenerations);
+	}
+
+	//variables
+
 	protected $name;
 	protected $teamName;
 	protected $strength;
@@ -25,7 +31,8 @@ class Ork {
 	protected $health;
 	protected $targetEnemy = false;
 
-	// initialize
+
+	// init and magic functions
 
 	function __construct($teamName = '', $name = FALSE, $strength = FALSE, $endurance = FALSE, $speed = FALSE) {
 		$this->teamName = $teamName;
@@ -50,10 +57,10 @@ class Ork {
 		$this->damage = $this->strength;
 	}
 
-	static function generateName() {
-		return 'Nameless Grunt Nr. '.(++Ork::$nameGenerations);
+	public function __toString() {
+		return $this->name;
 	}
-	
+
 	//Getters and Setters
 
 	public function getStrength() {
@@ -72,10 +79,18 @@ class Ork {
 		return $this->name;
 	}
 
+	public function getTeam() {
+		return $this->teamName;
+	}
+
+	public function setTeam($teamName) {
+		$this->teamName = $teamName;
+	}
+
 	public function isDead() {
 		return ($this->health <= 0);
 	}
-	
+
 	public function hasEnemy() {
 		$result = TRUE && $this->targetEnemy;
 	}
