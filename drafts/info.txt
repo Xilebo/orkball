@@ -1,0 +1,4 @@
+These files are not and should not be used directly. They are just drafts, how
+the page should/could look like, meant to plan and experiment with. If you want
+to use files or parts of files from this folder, please copy them into
+/templates or whereever they belong.  
